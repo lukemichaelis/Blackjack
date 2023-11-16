@@ -10,10 +10,15 @@ public class Card {
 	protected int pointValue;
 	protected String cardNumber;
 	protected String suit;
+	protected boolean isAce = false;
 		
 
 	public int getPointValue() {
 		return pointValue;
+	}
+	
+	public void setPointValue(int value) {
+		pointValue = value;
 	}
 	
 	public String getCardNumber() {
@@ -26,17 +31,7 @@ public class Card {
 		cardNumber = Numbers[pointValue - 2];
 		suit = Suits[random.nextInt(3) + 1];
 	}
-	/*public Card(String number, String cardSuit) { //for actual deck generation from words
-		cardNumber = number;
-		suit = cardSuit;
-		for (int i = 0; i < 9; i++) {
-			if (cardNumber.equals(Numbers[i])) {
-				pointValue = i + 1;
-				break;
-			}
-		}
-		
-	} */
+
 	
 	public Card(int number, int cardSuit) { //for random deck generation from numbers
 		cardNumber = Numbers[number - 2];
