@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,6 +9,7 @@ public class Blackjack {
 	static int dealerScore;
 	final int BUST = 21;
 	private boolean hitNext = true;
+	private HashSet<Card> deck;
 	
 	
 	
@@ -35,7 +36,7 @@ public class Blackjack {
 		System.out.println("You are betting " + betAmount + " chips on this hand.");
 	}
 	
-	public void initialize() { //sets up the HashMap deck
+	/*public void initialize() { //sets up the HashMap deck
 		Card dealerCard1 = new Card(); //visible card
 		dealerScore += dealerCard1.getPointValue();
 		Card dealerCard2 = new Card(); //invisible card
@@ -55,7 +56,7 @@ public class Blackjack {
 			System.out.println("Press H to hit."); //should only display these two if not BUST
 			System.out.println("Press S to stand."); //see note above 
 		}
-	}
+	} */
 	
 	public void hitReturn() { //when the player chooses to hit, this algorithm plays
 		
@@ -65,13 +66,29 @@ public class Blackjack {
 		
 	}
 	
-	public void newCard(String cardName, Random random) { //randomly chooses card between 1 and 13
-		if (i == 1) { //AceCard.java
-			//Make an ace
-		} else if (i >= 11) { //FaceCard.java
-			//Make three face cards
-		} else { //Card.java
-			
+	public void deckFill() { //randomly chooses card between 1 and 13
+		String tempCardName;
+		
+		for (int j = 0; j < 4; j++) {
+			for (int i = 0; i < 13; i++) {
+				if (i < 9) {
+					System.out.print("Number card. ");
+				} else if ((i > 8) && (i < 12)) {
+					System.out.print("Face card. ");
+				} else {
+					System.out.print("Ace.");
+				}
+				
+				Card card = new Card(i, j);
+				deck.add(card);
+				
+				//System.out.println("cardIndex " + (i + 1) + ", suitIndex " + (j + 1));
+				
+				//on i = 0-8: Card.java
+				//on i = 9-11: FaceCard.java
+				//on i = 12: AceCard
+				//each instance has a suit, happens 4X
+			}
 		}
 	}
 	
@@ -89,11 +106,6 @@ public class Blackjack {
 	public static void main(String[] args) {
 		
 		
-		HashMap<Card, Integer> deck = new HashMap<Card, Integer>(); //card type, pointValue in int
-		 
-		
-		
-		
 		Blackjack game = new Blackjack();
 		Scanner sc = new Scanner(System.in);
 		Random rand = new Random();
@@ -102,9 +114,9 @@ public class Blackjack {
 		
 		sc.nextLine();
 		
-		game.play(sc);
+		//game.play(sc);
 		
-		
+		game.deckFill();
 		
 		
 		
